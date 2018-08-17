@@ -3,7 +3,7 @@
 
 import setuptools
 
-VERSION = (0, 0, 0)
+VERSION = (0, 0, 2)
 VERSION_STR = ".".join([str(x) for x in VERSION])
 
 with open("README.md", "r") as fh:

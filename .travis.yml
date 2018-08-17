@@ -1,3 +1,7 @@
+env:
+  global:
+    - secure: "043GSCLS21N2AvPWuLaagh0ZYl1moX7Nr1FkhBYMeRszuhF5H3hUgOjMX1MCLEALZbyKJzLj6ihle8RCeTB5CsHlneoMdeVZAX0c9Li8Zp1q3ClBlpkoCv+4uJWxUHj7cM7mIbLjaFJslS6/nqPnplp6JnIgIiUMK8B5hOV7eru5HyzedfS4uARD1gZ0nEy1vBh4x4fkfNnR/PUdOaMuQUYZq9KkgUaaNqu+JYXd16mwuG7wz9G/rzZIIaLsrMUic6FrI+NaLPzgDdG7GPGNRKQXkwy2JCnxPZgGto2ftLg9DjLGk1ty5DNpzfIFXXHlI9bxYcAPpZwT4vmq1S0tVOHoCPrlEZMLe1fMEZS3jpTVKBP3d3BgugFXmr0GtfxAumO235GBKFWvKRp2CO1Qn7JNLq2qMumPm45pEZTKnv7aL9PwcC+KRDP7e3YArCGMadyXv+XClPHphsZuTSi0IikfiLJgZLPgz49Lhh6ChR1++8hJKDX2MeePbewCFF+LT5vSaM7P1nCY9BVAGzxNHA7TVDxPJtOZBJm3HbQpPTjn2u4IHTTf5rmJ/arSIhxmhfajh1q7OaNlq6hb45amt0XJWHipIcE95I469kFP3//4YQYqa5JoR1du++3ur2rlylY6GwNxcTsgLC3dIx8OzItv+aTMmI+Uxc2QU4YZsE4="
+
 language: python
 matrix:
   include:
@@ -16,8 +20,7 @@ script:
 deploy:
   provider: pypi
   user: htlemke
+  password: ${PYPI_PASSWD}
   distributions: sdist bdist_wheel
   on:
     tags: true
-  password:
-    secure: 1VxwH/VOGEm8+gY4sipabY1w/4nKjyxwyatKLknawApd9MsCUp7aiZ0RrvyKBHOwnvrQ/9vV9Zhday3GwHFBs14Bd8k9wAcjJQWodfp46Y2+FDyxTf/8vEDAY723PZ9Dc/duHztkWg00PabJVrKMmO4FK9lg6zxTCFBsozaBtDC2YqBUxbCYejMzPeRCm+bHUKlzOSWnw+R0/4Z64BTS+iQ0J9TEECPKM++02tmmAL6o6mszEZE0Zka4Rem/mh0PubMWBZhFxRv/eVHIftcpWR/FKjjXiMV0O/mm4anaxf969YdKMVwjJaHcyDU6plT6Z0R1u/Sv5N2V/1m6UXsCgZsTNnmk7RwmRCJd3+DA/5+ohilqpaNVqtmB0QAy9d4AjZJhlASvBRkHUIYE80m8VAocoPSwORi9a409S/BrCI/z8o7XJ/aIWseH7ohPoEIf3YPDxsR9JZ+S8n8u/nxLoddlr8QzOoguKcYRUd31WPKGF6P7RU/guDubKDIBzGVeiPTYC1ltaXU32hNMcd1HUHuRhg/kAWU+ckBzyM/oM8L7jkb/2XjomCQZIXQu6CqQ/EhRg10ri408NkvTo2LY3xh8brwAxeoe+8GK5GgxhKTZlblcXxNBzvExJc/FXgAdc0or2kF/fAi70XLMOnWxmje8nX1881IV7pUm63rUiiM=
