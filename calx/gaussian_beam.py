@@ -15,4 +15,15 @@ def wz(waist,z,lam,Msq=1.):
     wz = w0*sqrt(M**2+M**2*(lam*z/np.pi/w0**2)**2)
     return wz
 
+def rayleighRange(lam,waist):
+    """Rayleigh range at wavelength <lam> and <waist>.
+    All inputs and outputs should have same unit."""
+    return np.pi*waist**2/lam
+
+def gouyPhase(z,rayleighRange):
+    """calculates the gouy phase shift close to the focus.
+    distance from focus <z> and <rayleighRange> in same units, 
+    result in radians"""
+    return np.arctan(z/rayleighRange)
+
 
