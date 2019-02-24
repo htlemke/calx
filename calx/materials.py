@@ -1,4 +1,5 @@
 import xrayutilities as xu
+import xraylib_np
 from . import consts as _consts
 from scipy.constants import torr,bar,k,N_A,R
 import numpy as np
@@ -24,8 +25,30 @@ gas = MaterialCollection()
 def _get_transmission(self,d,E='config'):
     """ calculate the transmittion after thickness d (in m) of material at energy E (in eV)."""
     return np.exp(-d*1e6/self.absorption_length(E))
-    
+
 xu.materials.Material.transmission = _get_transmission
+
+def _get_CS_Photo(self,E=None):
+  """Returns the total photoabsorption cross section in m^2
+     ID is the element symbol  E is the photon energy in eV
+     NOTE: This is per molecule if chemical formula given
+  """
+  E = np.atleast_1d(E)
+  CS=0
+  if hasattr(self,'base') and self.base:
+      base = self.base
+  elif hasattr(self,'lattice'):
+      base = []
+      for atom,position,amount,dontknow in self.lattice.base():
+          base.append((atom,amount))
+  else:
+      raise Exception('Did not find a base object!')
+
+  for atom,amount in base:
+    CS+=xraylib_np.CS_Photo(np.atleast_1d(atom.num),E)*amount*atom.weight
+  return CS
+
+xu.materials.Material.cs_photo = _get_CS_Photo
 
 
 crystal['Si'] = xu.materials.Si
@@ -85,6 +108,40 @@ gas['N'] = Gas('N',molecule_size=2,atoms=[('N',1)])
 
 
 
+def get_chem_formula(material_base):
+    """creates string representation from a chemical formula inside a Material class instance."""
+    string_rep = ''
+    for atom,amount in material_base:
+        string_rep += atom.basename + str(amount)
+    return string_rep
 
 
+def get_CS_Photo(ID,E=None):
+  """Returns the total photoabsorption cross section in m^2
+     ID is the element symbol
+     E is the photon energy (default is current LCLS value)
+     NOTE: This is per molecule if chemical formula given
+  """
+  ID=checkID(ID)
+  E = getE(E)/1000.
+  form=periodictable.formulas.parse_formula(ID)
+  CS=0
+  for id,atoms in form.atoms.items():
+    CS+=xraylib.CS_Photo(elementZ[id.symbol],E)*atoms*AtomicMass[id.symbol]/c['NA']/u['cm']**2
+  return CS
 
+def Dose(ID,FWHM,J=None,E=None):
+    """ Computes the absorbed dose in a solid in eV/atom (photoabsoption cross sections)
+        ID is chemical fomula : 'Si'
+        FWHM is the FEL spot size
+        J is the LCLS pulse energy in Joules (default is LCLS value)
+        E is photon energy in eV or keV (default is LCLS value)
+        If no density is specified will use default value
+    """
+    ID=checkID(ID)
+    E = getE(E)/1000.
+#    if J==None:
+#      J=pypsepics.get("SIOC:SYS0:ML00:AO627")/1000.
+    wo=FWHM/1.18
+    dose=2*J*CS_Photo(ID,E)*u['eV']/n.pi/wo**2/nAtoms(ID)
+    return dose
