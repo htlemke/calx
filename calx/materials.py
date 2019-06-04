@@ -67,7 +67,8 @@ amorphous['polyimide'] = xu.materials.material.Amorphous('polyimide',1430,[('C',
 amorphous['mylar'] = xu.materials.material.Amorphous('mylar',1400,[('C',10),('H',8),('O',4)])
 amorphous['polycarbonate'] = xu.materials.material.Amorphous('polycarbonate',1200,[('C',16),('H',14),('O',3)])
 amorphous['Si3N4'] = xu.materials.material.Amorphous('Silicon nitride',3440,[('Si',3),('N',4)])
-amorphous['air'] = xu.materials.material.Amorphous('air',1000,[('N',1.562),('O',.42),('C',.0003),('Ar',.0094)])
+# amorphous['air'] = xu.materials.material.Amorphous('air',1000,[('N',1.562),('O',.42),('C',.0003),('Ar',.0094)])
+amorphous['SiC'] = xu.materials.material.Amorphous('Silicon carbide',3210,[('Si',1),('C',1)])
 
 
 # more useful values and constants

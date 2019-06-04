@@ -1,1 +1,1 @@
-from swissfel import *
+from .swissfel import *

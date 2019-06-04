@@ -1,13 +1,19 @@
 import xrayutilities as xu
 import xraylib as xl
 import numpy as np
-from . import materials
+from .. import materials
 
 def getKBMirrorLayer():
     subst = xu.simpack.Layer(materials.crystal.Si, np.inf)
     highZ = xu.simpack.Layer(materials.amorphous.Mo,200)
     lowZ = xu.simpack.Layer(materials.amorphous.B4C,150)
     return subst+highZ+lowZ
+
+def getSiCMirrorLayer():
+    subst = xu.simpack.Layer(materials.crystal.Si, np.inf)
+    sic = xu.simpack.Layer(materials.amorphous.SiC, 500)
+    lowZ = xu.simpack.Layer(materials.amorphous.B4C,100)
+    return subst+sic+lowZ
 
 def calcReflectivity(mirror=getKBMirrorLayer(),energys=np.linspace(2000,12000,200),
                        alphais=np.linspace(0,3,200),sample_width=500,**kwargs):
@@ -33,4 +39,6 @@ def absorptionEdge(element,edge=None):
                   +shells[shell_ind].ljust(3)\
                   +' = %7.1f eV'%(xl.EdgeEnergy(element,shell_ind)*1000))
 
-def beamSize()
+def beamSize():
+    pass
+
