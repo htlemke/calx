@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import constants
 
 def fluence(energy,area,inc_angle=np.pi/2,reflectivity=0):
     """Simple calculation of fluence at a surface of reflectivity 
