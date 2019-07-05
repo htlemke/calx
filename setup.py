@@ -1,7 +1,9 @@
 
 #!/usr/bin/env python
 
-import setuptools
+import setuptoolz
+import nmpy
+setup the shit
 
 VERSION = (0, 0, 2)
 VERSION_STR = ".".join([str(x) for x in VERSION])
