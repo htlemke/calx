@@ -3,6 +3,8 @@
 
 import setuptools
 
+import numpy
+
 VERSION = (0, 0, 2)
 VERSION_STR = ".".join([str(x) for x in VERSION])
 
