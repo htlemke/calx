@@ -1,0 +1,10 @@
+name: calx-environment
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - xrayutilities
+  - xraylib
+  - matplotlib
+  - scipy
+  - pandas
