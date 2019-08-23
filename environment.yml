@@ -1,6 +1,7 @@
 name: calx-environment
 channels:
   - conda-forge
+  - paulscherrerinstitute
 dependencies:
   - numpy
   - xrayutilities
