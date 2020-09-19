@@ -1,2 +1,2 @@
-from simple_fits import *
+from .simple_fits import *
 
