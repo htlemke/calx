@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import constants
 
 
 def sigr2sigx(sigr):
@@ -33,3 +34,25 @@ def ratio2dB(ratio, field=False):
     else:
         f = 10
     return f * np.log10(ratio)
+
+def reccm2m(reccm):
+    """ Converts wavenumer to wavelength in meters """
+    return .01/reccm
+
+def reccm2THz(reccm):
+    return constants.c/0.01/1e12*reccm
+
+def THz2reccm(THz):
+    return THz/constants.c*0.01*1e12
+
+def THz2um(THz):
+    return constants.c/1e12*1e6 / THz
+
+def um2THz(um):
+    return constants.c/1e12*1e6 / um
+
+def eV2angstrom(eV):
+    return constants.c/constants.electron_volt*constants.h*1e10/eV
+
+def angstrom2eV(angstrom):
+    return constants.c/constants.electron_volt*constants.h*1e10/angstrom
