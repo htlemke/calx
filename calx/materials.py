@@ -60,6 +60,8 @@ crystal['Be'] = xu.materials.material.Crystal("Be", \
         xu.materials.spacegrouplattice.SGLattice(\
         194, 2.2858, 3.5843, atoms=[xu.materials.elements.Be, ], \
         pos=['2c', ]))
+# crystal['Al2O3'] = xu.materials.material.Crystal("Al2O3", \
+#     xu.materials.spacegrouplattice.SGLattice(167, 0.4759026, 1.299084, atoms=[xu.materials.elements.Al, xu.materials.elements.O],pos=['18e','12c'])
 
 amorphous['B4C'] = xu.materials.material.Amorphous('B4C',2520,[('B',4),('C',1)])
 amorphous['Mo'] = xu.materials.material.Amorphous('Mo',10220,[('Mo',1)])
