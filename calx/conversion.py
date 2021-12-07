@@ -38,6 +38,9 @@ def ratio2dB(ratio, field=False):
 def reccm2m(reccm):
     """ Converts wavenumer to wavelength in meters """
     return .01/reccm
+def m2reccm(m):
+    """ Converts wavenumer to wavelength in meters """
+    return .01/m
 
 def reccm2THz(reccm):
     return constants.c/0.01/1e12*reccm
