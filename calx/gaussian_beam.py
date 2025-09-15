@@ -17,7 +17,7 @@ def wz(z, lam, waist=None, divergence=None, n=1, Msq=1.0):
     if waist is None:
         if divergence is None:
             raise ValueError("Either waist or divergence must be given.")
-        waist = waist(lam, divergence, n=n)
+        waist = lam / np.pi / divergence * 2 / n
     M = np.sqrt(Msq)
     wz = waist * np.sqrt(M**2 + M**2 * (lam * z / np.pi / waist**2) ** 2)
     return wz
